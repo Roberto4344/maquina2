@@ -92,17 +92,16 @@ public class MaquinaExpendedoraMejorada {
      * Vacia toda la maquina
      */
     public int vaciarMaquina() {
+        int vaciarMaquina = 0 ;
         if (balanceClienteActual > 0){
             System.out.println("################## ERROR ##################");
-            int vaciarMaquina = (-1);
-            return vaciarMaquina;
+            vaciarMaquina = (-1);
         }
         else{
-            int vaciarMaquina = (totalDineroAcumulado + balanceClienteActual);
+            vaciarMaquina = (totalDineroAcumulado + balanceClienteActual);
             totalDineroAcumulado = 0;
             balanceClienteActual = 0;
-            return vaciarMaquina;
         }
-
+        return vaciarMaquina;
     } 
 }
