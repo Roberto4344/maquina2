@@ -95,7 +95,7 @@ public class MaquinaExpendedoraMejorada {
         int vaciarMaquina = 0 ;
         if (balanceClienteActual > 0){
             System.out.println("################## ERROR ##################");
-            vaciarMaquina = (-1);
+            vaciarMaquina = -1;
         }
         else{
             vaciarMaquina = (totalDineroAcumulado + balanceClienteActual);
@@ -104,4 +104,13 @@ public class MaquinaExpendedoraMejorada {
         }
         return vaciarMaquina;
     } 
+    
+    /**
+     * Devuelve el numero de billetes vendidos
+     */
+    public int getNumeroBilletes() {
+        int NumeroBilletes;
+        NumeroBilletes = (totalDineroAcumulado / precioBillete);
+        return NumeroBilletes;
+    }
 }
