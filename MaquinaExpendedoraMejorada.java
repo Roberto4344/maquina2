@@ -12,19 +12,21 @@ public class MaquinaExpendedoraMejorada {
     private String estacionDestino;
     //Posibilidad de dar un descuento
     private boolean premio;
-    //Cuenta los bileltes vendidos
+    //Maximo de billetes
+    private int ticket;
     /**
      * Crea una maquina expendedora de billetes de tren con el 
      * precio del billete y el origen y destino dados. Se asume que el precio
      * del billete que se recibe es mayor que 0.
      */
-    public MaquinaExpendedoraMejorada(int precioDelBillete, String origen, String destino,boolean descuento){
+    public MaquinaExpendedoraMejorada(int precioDelBillete, String origen, String destino,boolean descuento,int nBillete){
         precioBillete = precioDelBillete;
         balanceClienteActual = 0;
         totalDineroAcumulado = 0;
         estacionOrigen = origen;
         estacionDestino = destino;
-        premio= descuento;
+        premio = descuento;
+        ticket = nBillete;
     }
 
     /**
@@ -47,7 +49,7 @@ public class MaquinaExpendedoraMejorada {
     public void introducirDinero(int cantidadIntroducida) {
         int numeroBillete;
         numeroBillete = (totalDineroAcumulado / precioBillete);
-        if (numeroBillete < 2 ) {
+        if (numeroBillete < ticket ) {
             numeroBillete = (totalDineroAcumulado / precioBillete);
             if (cantidadIntroducida > 0) {
                 balanceClienteActual = balanceClienteActual + cantidadIntroducida;
@@ -74,7 +76,7 @@ public class MaquinaExpendedoraMejorada {
         if (cantidadDeDineroQueFalta <= 0 ) { 
             int numeroBilletes;
             numeroBilletes = (totalDineroAcumulado / precioBillete);
-            if ( numeroBilletes < 2 ) {
+            if ( numeroBilletes < ticket ) {
                 // Simula la impresion de un billete
                 if (premio == true) {
                     double descuento = (precioBillete * 0.10);
