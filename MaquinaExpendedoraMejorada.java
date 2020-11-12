@@ -13,7 +13,7 @@ public class MaquinaExpendedoraMejorada {
     //Posibilidad de dar un descuento
     private boolean premio;
     //Maximo de billetes
-    private int ticket;
+    private int maximoBilletesVenta;
     /**
      * Crea una maquina expendedora de billetes de tren con el 
      * precio del billete y el origen y destino dados. Se asume que el precio
@@ -26,7 +26,7 @@ public class MaquinaExpendedoraMejorada {
         estacionOrigen = origen;
         estacionDestino = destino;
         premio = descuento;
-        ticket = nBillete;
+        maximoBilletesVenta = nBillete;
     }
 
     /**
@@ -49,7 +49,7 @@ public class MaquinaExpendedoraMejorada {
     public void introducirDinero(int cantidadIntroducida) {
         int numeroBillete;
         numeroBillete = (totalDineroAcumulado / precioBillete);
-        if (numeroBillete < ticket ) {
+        if (numeroBillete < maximoBilletesVenta ) {
             numeroBillete = (totalDineroAcumulado / precioBillete);
             if (cantidadIntroducida > 0) {
                 balanceClienteActual = balanceClienteActual + cantidadIntroducida;
@@ -76,24 +76,27 @@ public class MaquinaExpendedoraMejorada {
         if (cantidadDeDineroQueFalta <= 0 ) { 
             int numeroBilletes;
             numeroBilletes = (totalDineroAcumulado / precioBillete);
-            if ( numeroBilletes < ticket ) {
+            if ( numeroBilletes < maximoBilletesVenta ) {
                 // Simula la impresion de un billete
+                System.out.println("##################");
+                System.out.println("# Billete de tren:");
+                System.out.println("# De " + estacionOrigen + " a " + estacionDestino);
+                System.out.println("# " + precioBillete + " euros.");
                 if (premio == true) {
                     double descuento = (precioBillete * 0.10);
-
-                    //imprime el billete con el descuento para las tiendas
-                    System.out.println("##################");
-                    System.out.println("# Billete de tren:");
-                    System.out.println("# De " + estacionOrigen + " a " + estacionDestino);
-                    System.out.println("# " + precioBillete + " euros.");
-                    System.out.println("# " + descuento + " euros de descuento.");
-                    System.out.println("##################");
-                } 
+                    int premioBillete;
+                    premioBillete = (numeroBilletes + 1 );
+                    if ( premioBillete % 3 == 0){
+                        //imprime el billete con el descuento para las tiendas
+                        System.out.println("# " + descuento + " euros de descuento.");
+                        System.out.println("##################");
+                    }
+                    else{
+                        System.out.println("###Buen Viaje###");
+                        System.out.println("##################");
+                    } 
+                }
                 else {
-                    System.out.println("##################");
-                    System.out.println("# Billete de tren:");
-                    System.out.println("# De " + estacionOrigen + " a " + estacionDestino);
-                    System.out.println("# " + precioBillete + " euros.");
                     System.out.println("##################");
                 }
             }  
@@ -101,6 +104,7 @@ public class MaquinaExpendedoraMejorada {
                 System.out.println("########### ERROR ###########");
                 System.out.println("###Se ha vendido el maximo###");
                 System.out.println("######Recoja su cambio######");
+                System.out.println("##################");
                 balanceClienteActual = 0 ;
             }
 
